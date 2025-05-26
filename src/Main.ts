@@ -1,14 +1,16 @@
-import { Admin } from "./Admin";
-import { Customer } from "./Customer";
+import { Teacher } from "./Teacher";
+import { Student } from "./Student";
+import { Course } from "./Course";
+import { School } from "./School";
 
-const admin = new Admin("adminUser", "admin@example.com");
-const customer = new Customer("johnDoe", "john@example.com");
+const teacher = new Teacher("Mr. Sam", "123 Street", "Math");
+const student = new Student("Pichie", "456 Street", "Grade 12");
+const course = new Course("Mathematics", teacher);
+const school = new School("Passerelles Numériques");
 
-admin.login("adminUser", "adminpass");       // overridden
-customer.login("johnDoe", "123456");         // overridden
+school.addTeacher(teacher);
+school.addStudent(student);
+school.addCourse(course);
 
-admin.login("admin@example.com");            // simulated overloaded
-customer.login("john@example.com");          // simulated overloaded
-
-console.log(`Admin role: ${admin.getRole()}`);
-console.log(`Customer role: ${customer.getRole()}`);
+student.enroll(course);
+teacher.assignGrade(student, "A");
